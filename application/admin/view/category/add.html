@@ -1,0 +1,80 @@
+<{extends file="common/layout.html"}>
+<{block name="content"}>
+
+    <div class="aw-content-wrap">
+        <form method="post" id="category_form" enctype="multipart/form-data"
+        action="?m=admin&c=category&a=addHandleAction">
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">添加分类</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类标题:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" name="cat_name" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+					<tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类描述:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" name="cat_desc" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类图标:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="file" value="默认分类" name="cat_logo" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">父级分类:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <select class="form-control" name="parent_id">
+                                        <option value="0">无</option>
+
+                                        <!--循环所有的数据遍历出来-->
+                                        <{foreach $cat_list as $cat}>
+                                        <option value="<{$cat['cat_id']}>"> <{$cat['cat_name']}></option>
+                                        <{/foreach}>
+                                     </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody><tfoot>
+                    <tr>
+                        <td>
+                            <input type="submit" class="btn btn-primary center-block" value="添加">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+<{/block}>

@@ -1,0 +1,99 @@
+
+<{extends file="common/layout.html"}>
+<{block name="content"}>
+
+
+
+
+    <div class="aw-content-wrap">
+        <form  method="post" id="category_form" action="?m=admin&c=category&a=updateAction" enctype="multipart/form-data">
+
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">分类编辑</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类标题:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" value="<{$cat['cat_name']}>" name="cat_name" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类描述:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" value="<{$cat['cat_desc']}>" name="cat_desc" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类图标:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <{if isset($cat['cat_logo'])}>
+                                    <img src="<{THUMB_PATH}>category/<{$cat['cat_logo']}>" alt="" style="max-width: 50px;max-height:50px;">
+                                    <span style="color: red;">哥们,你已经上传的了图标,在次上传可能会覆盖</span>
+                                    <input type="file" name="cat_logo" class="form-control">
+                                    <{else}>
+                                    <input type="file" name="cat_logo" class="form-control">
+                                    <{/if}>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">父级分类:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <select class="form-control" name="parent_id">
+                                        <option value="0">无</option>
+                                        <!--查询的所有的树状子类遍历他们-->
+                                        <{foreach $cat_list as $v}>
+                                        <option <{if $cat['parent_id'] == $v['cat_id']}>selected<{/if}>
+                                                value="<{$v['cat_id']}>"><{$v['cat_name']}>
+
+                                        </option>
+
+                                        <{/foreach}>
+                                    </select>
+
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody><tfoot>
+                    <tr>
+                        <td>
+                            <input type="hidden" value="<{$cat['cat_id']}>" name="cat_id">
+                            <input type="hidden" value="<{$cat['cat_logo']}>" name="old_cat_logo">
+                            <input type="submit"  class="btn btn-primary center-block" value="保存设置">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            </div>
+        </form>
+    </div>
+
+
+<{/block}>
